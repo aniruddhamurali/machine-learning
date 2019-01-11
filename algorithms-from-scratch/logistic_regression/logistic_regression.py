@@ -70,7 +70,7 @@ class LogisticRegression:
 
 
     # Make a prediction with coefficients
-    def predict_coef(self, row, coefficients):
+    def predict(self, row, coefficients):
         yhat = coefficients[0]
         for i in range(len(row)-1):
             yhat += coefficients[i + 1] * row[i]
@@ -91,11 +91,11 @@ class LogisticRegression:
 
 
     # Logistic Regression Algorithm With Stochastic Gradient Descent
-    def predict(self, train, test, l_rate, n_epoch):
+    def fit(self, train, test, l_rate, n_epoch):
         predictions = list()
         coef = coefficients_sgd(train, l_rate, n_epoch)
         for row in test:
-            yhat = predict_coef(row, coef)
+            yhat = predict(row, coef)
             print(yhat)
             yhat = round(yhat)
             predictions.append(yhat)
